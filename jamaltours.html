@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamal Tourism - Voyages de luxe en Russie</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #c0392b;
+            --primary-dark: #a82313;
+            --secondary-color: #2c3e50;
+            --accent-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --dark-text: #1a1a2e;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+
+        /* Style RTL pour l'arabe */
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Cairo', 'Poppins', sans-serif;
+        }
+
+        body.rtl .ms-auto {
+            margin-right: auto !important;
+            margin-left: 0 !important;
+        }
+
+        body.rtl .me-2 {
+            margin-right: 0 !important;
+            margin-left: 0.5rem !important;
+        }
+
+        body.rtl .ms-2 {
+            margin-left: 0 !important;
+            margin-right: 0.5rem !important;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem 0;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+        }
+
+        .navbar-brand span {
+            font-size: 0.9rem;
+            display: block;
+            color: white;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: var(--transition);
+            margin: 0 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        url('hero.jpeg') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        body.rtl .section-title h2:after {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Tour Cards */
+        .tour-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            background: white;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .tour-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .tour-content {
+            padding: 1.5rem;
+        }
+
+        .tour-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.25);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 3rem 0 1rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        body.rtl .language-switcher {
+            right: auto;
+            left: 20px;
+        }
+
+        .language-switcher:hover {
+            transform: scale(1.05);
+        }
+
+        .lang-option {
+            cursor: pointer;
+            padding: 0 5px;
+            transition: var(--transition);
+        }
+
+        .lang-option:hover {
+            color: var(--primary-color);
+        }
+
+        .lang-active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-size: 2rem;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.rtl .whatsapp-float {
+            right: auto;
+            left: 30px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+          /* Card styling */
+    .activity-card {
+      border: none;
+      border-radius: 1.3rem;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s;
+      background: white;
+      box-shadow: 0 12px 22px -8px rgba(0, 0, 0, 0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 32px -12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+      height: 210px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 1.3rem 1.2rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-weight: 800;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .price-badge {
+      background: #eef2ff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      color: #1e5f7a;
+    }
+
+    .category-tag {
+      background: #f2e8cf;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      width: fit-content;
+    }
+
+    .activity-desc {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #2c4456;
+      margin: 0.5rem 0 1rem;
+      flex-grow: 1;
+    }
+
+    .btn-explore {
+      background: transparent;
+      border: 1.8px solid #b4653a;
+      color: #b4653a;
+      border-radius: 60px;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-explore:hover {
+      background: #b4653a;
+      color: white;
+      border-color: #b4653a;
+    }
+    </style>
+</head>
+<body>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/79017354938" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <i class="fas fa-globe"></i> 
+    <span class="lang-option" onclick="switchLanguage('fr')" id="lang-fr">FR</span> / 
+    <span class="lang-option" onclick="switchLanguage('ar')" id="lang-ar">AR</span> / 
+    <span class="lang-option" onclick="switchLanguage('en')" id="lang-en">EN</span> / 
+    <span class="lang-option" onclick="switchLanguage('ru')" id="lang-ru">RU</span>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="#"><IMG src="log.png" width="300PX"></IMG></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home" data-i18n="home">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services" data-i18n="services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tours" data-i18n="tours">Circuits</a></li>
+                <li class="nav-item"><a class="nav-link" href="#features" data-i18n="features">Avantages</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 data-i18n="hero-title">Découvrez la Russie<br>comme jamais auparavant</h1>
+                <p data-i18n="hero-subtitle">Aventures inoubliables et circuits passionnants au cœur de la Russie</p>
+                <button class="btn btn-primary-custom btn-lg" onclick="document.getElementById('tours').scrollIntoView({behavior: 'smooth'})" data-i18n="choose-tour">
+                    Choisissez votre circuit <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5" id="services" style="background: var(--light-bg);">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-i18n="services-title">Nos Services</h2>
+            <p data-i18n="services-subtitle">Nous travaillons chaque jour pour rendre la vie de nos clients meilleure et plus heureuse</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-car"></i></div>
+                    <h4 data-i18n="service1-title">Transferts VIP</h4>
+                    <p data-i18n="service1-desc">Transport confortable avec chauffeurs professionnels - toutes classes disponibles</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h4 data-i18n="service2-title">Circuits Touristiques</h4>
+                    <p data-i18n="service2-desc">Forfaits sur mesure avec guides experts et support complet</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-plane-arrival"></i></div>
+                    <h4 data-i18n="service3-title">Accueil Aéroport</h4>
+                    <p data-i18n="service3-desc">Service 24/7 - Nos agents vous attendent jour et nuit</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-passport"></i></div>
+                    <h4 data-i18n="service4-title">Support Visa</h4>
+                    <p data-i18n="service4-desc">Invitations légales pour visa russe - Conformité garantie</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chalkboard-user"></i></div>
+                    <h4 data-i18n="service5-title">Guides Touristiques</h4>
+                    <p data-i18n="service5-desc">Découvrez Moscou avec nos experts - Expérience unique garantie</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-signature"></i></div>
+                    <h4 data-i18n="service6-title">Traductions Certifiées</h4>
+                    <p data-i18n="service6-desc">Documents légalisés par notaire - Rapide et efficace</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tours Section -->
+<section class="py-5" id="tours">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-i18n="tours-title">Circuits Exclusifs</h2>
+            <p data-i18n="tours-subtitle">Des expériences uniques pour des souvenirs inoubliables</p>
+        </div>
+
+        <div class="container mb-5">
+            <div class="row g-4">
+        <div class="container mb-5">
+            <div class="row g-4">
+        
+                <!-- 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="MILITARYEXPERIENCE.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity1category"><i class="bi bi-shield-shaded"></i>
+                                MILITARY EXPERIENCE</div>
+                            <h5 class="card-title" data-i18n="activity1title">
+                                BMP-1 Tank Safari
+                              
+                            </h5>
+                            <p class="activity-desc" data-i18n="activity1desc">Gear up in authentic camouflage...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity1btn">UNLEASH</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="ADRENALINERUSH.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity2category"><i class="bi bi-car-front-fill"></i>
+                                ADRENALINE RUSH</div>
+                            <h5 class="card-title" data-i18n="activity2title">
+                                Pro Drifting
+                                
+                            </h5>
+                            <p class="activity-desc" data-i18n="activity2desc">Feel the thrill as you drift...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity2btn">DRIFT NOW</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="EXTREMEMUDWATER.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity3category"><i class="bi bi-truck"></i> EXTREME MUD &
+                                WATER</div>
+                            <h5 class="card-title" data-i18n="activity3title">Big Foot Tours</h5>
+                            <p class="activity-desc" data-i18n="activity3desc">The largest amphibious ATVs in Europe...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity3btn">CONQUER</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="LUXURYCRUISE.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity4category"><i class="bi bi-water"></i> LUXURY CRUISE
+                            </div>
+                            <h5 class="card-title" data-i18n="activity4title">Radisson Cruise Moscow</h5>
+                            <p class="activity-desc" data-i18n="activity4desc">Luxury ship, hot Russian tea...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity4btn">CRUISE</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="SKIING.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity5category"><i class="bi bi-snow2"></i> WINTER SPORT
+                            </div>
+                            <h5 class="card-title" data-i18n="activity5title">Skiing & Snowboarding</h5>
+                            <p class="activity-desc" data-i18n="activity5desc">Snowy paradise experience...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity5btn">HIT SLOPES</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="HelicopterTourMoscow.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity6category"><i class="bi bi-helicopter"></i> BIRD'S EYE
+                                VIEW</div>
+                            <h5 class="card-title" data-i18n="activity6title">Helicopter Tour Moscow</h5>
+                            <p class="activity-desc" data-i18n="activity6desc">Explore Moscow from above...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity6btn">FLY HIGH</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 7 -->
+            
+                <!-- 8 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="BEAR.JPEG"
+                            class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity8category"><i class="bi bi-tree-fill"></i> WILD
+                                ENCOUNTER</div>
+                            <h5 class="card-title" data-i18n="activity8title">Meet the Russian Bear</h5>
+                            <p class="activity-desc" data-i18n="activity8desc">Wild nature experience...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity8btn">BEAR ADVENTURE</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 9 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="show.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity9category"><i class="bi bi-mask"></i> CIRCUS LEGACY
+                            </div>
+                            <h5 class="card-title" data-i18n="activity9title">Russian Circus Show</h5>
+                            <p class="activity-desc" data-i18n="activity9desc">World-famous circus...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity9btn">GET TICKETS</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 10 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="husky.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity10category"><i class="bi bi-wind"></i> ARCTIC SPIRIT
+                            </div>
+                            <h5 class="card-title" data-i18n="activity10title">Husky Sleigh Ride</h5>
+                            <p class="activity-desc" data-i18n="activity10desc">Snow adventure...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity10btn">RIDE WITH HUSKIES</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 11 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="airballon.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity11category"><i class="bi bi-cloud-sun"></i> PANORAMIC
+                                DREAMS</div>
+                            <h5 class="card-title" data-i18n="activity11title">
+                                Air Balloon Tour
+                                <span class="price-tag" data-i18n="activity11price">From 12 000₽</span>
+                            </h5>
+                            <p class="activity-desc" data-i18n="activity11desc">Sky view experience...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity11btn">SOAR HIGH</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 12 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="moscowzoo.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity12category"><i class="bi bi-paw"></i> FAMILY DAY</div>
+                            <h5 class="card-title" data-i18n="activity12title">Moscow Zoo</h5>
+                            <p class="activity-desc" data-i18n="activity12desc">Wildlife discovery...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity12btn">EXPLORE ZOO</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 13 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card activity-card">
+                        <img src="Reindeer.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <div class="icon-badge-sm" data-i18n="activity13category"><i class="bi bi-tree"></i> INDIGENOUS
+                                CULTURE</div>
+                            <h5 class="card-title" data-i18n="activity13title">Reindeer Riding</h5>
+                            <p class="activity-desc" data-i18n="activity13desc">Northern tradition...</p>
+                            <a href="#" class="btn-russia text-decoration-none d-block" data-i18n="activity13btn">RIDE REINDEER</a>
+                        </div>
+                    </div>
+                </div>
+        
+              
+        
+            </div>
+        </div>
+
+       
+            <!-- Extra info -->
+          
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="tour-card">
+                    <div class="tour-content">
+                        <h4 data-i18n="tour1-title">Moscou d'exception</h4>
+                        <p data-i18n="tour1-desc">Découvrez la capitale en voiture de sport ou en hélicoptère</p>
+                        <button class="btn btn-primary-custom" onclick="openBooking('Moscou Exception')" data-i18n="book-now">Réserver</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="tour-card">
+                    <div class="tour-content">
+                        <h4 data-i18n="tour2-title">Aventure Russe</h4>
+                        <p data-i18n="tour2-desc">Traîneaux à chiens husky et campements traditionnels</p>
+                        <button class="btn btn-primary-custom" onclick="openBooking('Aventure Russe')" data-i18n="book-now">Réserver</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="tour-card">
+                    <div class="tour-content">
+                        <h4 data-i18n="tour3-title">Glamping de Luxe</h4>
+                        <p data-i18n="tour3-desc">Retraites champêtres avec tout le confort moderne</p>
+                        <button class="btn btn-primary-custom" onclick="openBooking('Glamping Luxe')" data-i18n="book-now">Réserver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5" id="features" style="background: var(--secondary-color); color: white;">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="color: white;" data-i18n="features-title">Pourquoi Nous Choisir</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h4 data-i18n="feature1-title">Support 24/7</h4>
+                    <p data-i18n="feature1-desc">Assistance multilingue en continu</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4 data-i18n="feature2-title">Sécurité Garantie</h4>
+                    <p data-i18n="feature2-desc">Partenaires certifiés - Paiements transparents</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4 data-i18n="feature3-title">Service Premium</h4>
+                    <p data-i18n="feature3-desc">Attention personnalisée à chaque détail</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section 
+<section class="py-5" id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-i18n="contact-title">Prêt pour l'aventure ?</h2>
+            <p data-i18n="contact-subtitle">Contactez-nous pour une consultation gratuite</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    <form id="bookingForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="name" placeholder="Votre nom complet"
+                                    data-i18n-placeholder="name-placeholder" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" id="email" placeholder="Email"
+                                    data-i18n-placeholder="email-placeholder" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" id="phone" placeholder="Téléphone"
+                                    data-i18n-placeholder="phone-placeholder" required>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select" id="service">
+                                    <option value="" data-i18n="service-select">Service qui vous intéresse</option>
+                                    <option data-i18n="service1-title">Transferts VIP</option>
+                                    <option data-i18n="service2-title">Circuits Touristiques</option>
+                                    <option data-i18n="service4-title">Support Visa</option>
+                                    <option data-i18n="service5-title">Guide Touristique</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" id="message" rows="4" placeholder="Votre message..."
+                                    data-i18n-placeholder="message-placeholder"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary-custom w-100" data-i18n="send">Envoyer la
+                                    demande</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+<!-- Contact Section -->
+<section class="py-5" id="contact">
+    <div class="container">
+    <div class="section-title">
+        <h2 data-i18n="contact-title">Prêt pour l'aventure ?</h2>
+        <p data-i18n="contact-subtitle">Contactez-nous pour une consultation gratuite</p>
+    </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+               
+                        <div class="row g-3">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="service-card">
+                                    <img src="instagram.png"width="100%" class="rounded-4" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="service-card">
+                                   <img src="snapchat.png"  width="100%"  class="rounded-4" alt="">
+                                </div>
+                            </div>
+                        </div>
+                   
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4>جمال<br>Jamal Tourism</h4>
+                <p data-i18n="footer-desc">Découvrez la Russie autrement - Luxe, Aventure et Authenticité</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 data-i18n="contact-us">Contactez-nous</h4>
+                <p><i class="fas fa-phone me-2"></i> +7 (916) 181-85-48</p>
+                <p><i class="fas fa-envelope me-2"></i> jamaltoursrussia@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt me-2"></i> Moscou, Russie</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 data-i18n="hours">Horaires</h4>
+                <p>24h/24, 7j/7<br>Support multilingue disponible</p>
+            </div>
+        </div>
+        <hr class="mt-3">
+        <div class="text-center">
+            <p>&copy; 2026 Jamal Tourism - Tous droits réservés</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Language content dictionary
+
+
+
+
+function renderCards() {
+const container = document.getElementById('activitiesContainer');
+if (!container) return;
+const data = translationsa[currentLang];
+const activities = data.activities;
+let html = '';
+for (let i = 0; i < activities.length; i++) { const act=activities[i]; const imgUrl=activityImages[i %
+    activityImages.length]; html +=` <div class="col-lg-4 col-md-6">
+    <div class="card activity-card">
+        <img src="${imgUrl}" class="card-img-top" alt="${act.title}">
+        <div class="card-body">
+            <div class="category-tag">${act.category}</div>
+            <h5 class="card-title">${act.title} </h5>
+            <p class="activity-desc">${act.desc}</p>
+            <a href="#" class="btn-explore">${currentLang === 'en' ? 'BOOK NOW' : (currentLang === 'fr' ? 'RÉSERVER' :
+                (currentLang === 'de' ? 'BUCHEN' : 'ЗАБРОНИРОВАТЬ'))} <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </div>
+    </div>
+    `;
+    }
+    container.innerHTML = html;
+    // Update hero texts
+    document.getElementById('heroTitle').innerText = data.hero_title;
+    document.getElementById('heroSub').innerText = data.hero_sub;
+    }
+
+    function setLanguage(lang) {
+    currentLang = lang;
+    renderCards();
+    // update active class on language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+    if (btn.getAttribute('data-lang') === lang) {
+    btn.classList.add('active');
+    } else {
+    btn.classList.remove('active');
+    }
+    });
+    }
+
+    window.onload = () => {
+    renderCards();
+    // Attach event listeners
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+    const lang = btn.getAttribute('data-lang');
+    if (lang) setLanguage(lang);
+    });
+    });
+    };
+    </script>
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Form submission
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert(translations[currentLang]['form-success'] || 'Merci ! Notre équipe vous contactera dans les 24 heures.');
+        this.reset();
+    });
+
+    // Booking function
+    function openBooking(tourName) {
+        document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+        const msgField = document.getElementById('message');
+        if (translations[currentLang]['interested-in']) {
+            msgField.value = `${translations[currentLang]['interested-in']} : ${tourName}`;
+        } else {
+            msgField.value = `Je suis intéressé par le circuit : ${tourName}`;
+        }
+    }
+
+    const translationsa = {
+        en: {
+            hero_title: `⚡ RUSSIA: 14 RAW ADVENTURES`,
+            hero_sub: `From tank driving & drifting to husky sleigh, helicopter tours and circus — experience Russia's wild heart.`,
+            activities: [
+                {
+                    "activity1title": `BMP-1 Tank Safari`, "activity1desc": `Gear up in authentic camouflage, master AK-47 shooting, and command a real BMP-1 /
+T-14 Armata through rugged terrain. Finish with military field lunch.`, "activity1category": `MILITARY`
+                },
+                {
+                    "activity2title": `Pro Drifting`, "activity2desc": `Feel the thrill as you drift with pro instructors. Master car control, master slides,
+and unleash your inner racer on a professional track.`, "activity2category": `ADRENALINE`
+                },
+                {
+                    "activity3title": `Big Foot Tours`, "activity3desc": `The largest amphibious ATVs in Europe. Conquer swamps, rivers and deep forest — an
+emotion you will remember for a long time!`,  "activity3category": `EXTREME`
+                },
+                {
+                    title: `Radisson Cruise Moscow`, desc: `Luxury ship on Moscow River with hot Russian tea, while landmarks like Kremlin
+& St. Basil's glide by. Pure cultural elegance.`, price: `From 4 500₽`, category: `CRUISE`
+                },
+                {
+                    title: `Skiing & Snowboarding`, desc: `Moscow turns into snowy paradise. Sorokovo Resort offers slopes for all levels
+— from beginners to pros.`, price: `From 3 200₽`, category: `WINTER`
+                },
+                {
+                    title: `Helicopter Tour Moscow`, desc: `Rise above the city skyline for an extraordinary aerial adventure. Memorable
+moments as you explore from new heights.`, price: `From 18 000₽`, category: `AERIAL`
+                },
+                {
+                    title: `Dolphin Show Moscow`, desc: `Travelling with family? Smart dolphins and exciting water shows will bring a
+smile to everyone's faces.`, price: `From 2 500₽`, category: `FAMILY`
+                },
+                {
+                    title: `Meet the Russian Bear`, desc: `Did you know you can meet the Russian bear in reserves near Moscow? Feel
+connected with wild nature & culture.`, price: `From 6 000₽`, category: `WILDLIFE`
+                },
+                {
+                    title: `Russian Circus Show`, desc: `One of the most famous shows in the world. Talented artists, trained animals —
+you will be amazed.`, price: `From 3 000₽`, category: `CIRCUS`
+                },
+                {
+                    title: `Husky Sleigh Ride`, desc: `Husky wagons are an experience you should definitely try. Powerful dogs take you
+through snowy forests — pure magic.`, price: `From 7 500₽`, category: `ARCTIC`
+                },
+                {
+                    title: `Air Balloon Tour`, desc: `See Moscow from a completely different perspective. The view from above is a
+masterpiece, especially with clear skies.`, price: `From 12 000₽`, category: `PANORAMIC`
+                },
+                {
+                    title: `Moscow Zoo`, desc: `Don't miss a visit to the historic Moscow Zoo. See a variety of animals from all over the
+world.`, price: `From 1 200₽`, category: `FAMILY`
+                },
+                {
+                    title: `Reindeer Riding`, desc: `Embrace the Arctic soul — ride with reindeer across pristine landscapes. Unique
+connection to Russian North.`, price: `From 8 500₽`, category: `CULTURE`
+                },
+                {
+                    title: `Horseback Riding`, desc: `Gallop through scenic fields, forests and riverbanks. Professional guides for all
+experience levels.`, price: `From 4 000₽`, category: `NATURE`
+                }
+            ]
+        },
+        fr: {
+            hero_title: `⚡ RUSSIE : 14 AVENTURES INTENSES`,
+            hero_sub: `Conduite de char, drift, traîneau à huskys, hélicoptère, cirque — vivez le cœur sauvage de la Russie.`,
+            activities: [
+                {
+                    title: `Safari Tank BMP-1`, desc: `Équipement camouflage, tir AK-47, commandez un vrai BMP-1 / T-14 Armata sur terrain
+accidenté. Déjeuner militaire traditionnel.`, price: `À partir de 15 000₽`, category: `MILITAIRE`
+                },
+                {
+                    title: `Drift Pro`, desc: `Frissons garantis avec moniteurs pro. Maîtrisez le glisse et devenez un vrai pilote sur
+circuit.`, price: `À partir de 9 500₽`, category: `ADRÉNALINE`
+                },
+                {
+                    title: `Big Foot Tours`, desc: `Les plus gros VTT amphibies d'Europe. Marais, rivières et forêt profonde — une émotion
+inoubliable !`, price: `À partir de 12 000₽`, category: `EXTREME`
+                },
+                {
+                    title: `Croisière Moscou`, desc: `Bateau de luxe sur la Moskova, thé russe, vues sur le Kremlin et Saint-Basile.
+Élégance culturelle.`, price: `À partir de 4 500₽`, category: `CROISIÈRE`
+                },
+                {
+                    title: `Ski & Snowboard`, desc: `Moscou paradis blanc. Station Sorokovo : pistes pour tous niveaux.`, price: `À partir
+de 3 200₽`, category: `HIVER`
+                },
+                {
+                    title: `Tour Hélicoptère`, desc: `Vue imprenable sur Moscou. Aventure aérienne exceptionnelle.`, price: `À partir de
+18 000₽`, category: `AÉRIEN`
+                },
+                {
+                    title: `Spectacle Dauphins`, desc: `En famille ? Dauphins intelligents et shows aquatiques magiques.`, price: `À
+partir de 2 500₽`, category: `FAMILLE`
+                },
+                {
+                    title: `Rencontre avec l'Ours`, desc: `Saviez-vous que vous pouvez voir l'ours russe dans des réserves près de Moscou
+? Connexion avec la nature.`, price: `À partir de 6 000₽`, category: `FAUNE`
+                },
+                {
+                    title: `Cirque Russe`, desc: `L'un des cirques les plus célèbres au monde. Artistes talentueux, animaux dressés.`,
+                    price: `À partir de 3 000₽`, category: `CIRQUE`
+                },
+                {
+                    title: `Traîneau à Husky`, desc: `Chiens puissants vous emmènent en forêt enneigée — pur bonheur.`, price: `À partir
+de 7 500₽`, category: `ARCTIQUE`
+                },
+                {
+                    title: `Montgolfière`, desc: `Moscou vue d'en haut : un chef-d'œuvre par ciel clair.`, price: `À partir de 12 000₽`,
+                    category: `PANORAMA`
+                },
+                {
+                    title: `Zoo de Moscou`, desc: `Ne manquez pas ce zoo historique. Animaux du monde entier.`, price: `À partir de 1
+200₽`, category: `FAMILLE`
+                },
+                {
+                    title: `Balade en Renne`, desc: `Âme arctique : balade à renne dans des paysages vierges.`, price: `À partir de 8
+500₽`, category: `CULTURE`
+                },
+                {
+                    title: `Équitation`, desc: `Galop dans champs et forêts. Guides professionnels.`, price: `À partir de 4 000₽`,
+                    category: `NATURE`
+                }
+            ]
+        },
+        de: {
+            hero_title: `⚡ RUSSLAND: 14 ROHRE ABENTEUER`,
+            hero_sub: `Vom Panzerfahren & Driften bis zum Husky-Schlitten, Hubschrauber-Touren und Zirkus — erleben Sie Russlands
+wilde Seele.`,
+            activities: [
+                {
+                    title: `BMP-1 Panzer Safari`, desc: `Tarnuniform, AK-47 Schießen, steuern Sie einen echten BMP-1 / T-14 Armata über
+unwegsames Gelände. Militärisches Feldessen.`, price: `Ab 15 000₽`, category: `MILITÄR`
+                },
+                {
+                    title: `Profi Driften`, desc: `Spüren Sie den Nervenkitzel mit Pro-Trainern. Meistern Sie das Auto und werden Sie
+Racer.`, price: `Ab 9 500₽`, category: `ADRENALIN`
+                },
+                {
+                    title: `Big Foot Touren`, desc: `Europas größte Amphibien-ATVs. Erobern Sie Sümpfe, Flüsse und tiefen Wald –
+unvergesslich!`, price: `Ab 12 000₽`, category: `EXTREM`
+                },
+                {
+                    title: `Kreuzfahrt Moskau`, desc: `Luxusschiff auf der Moskwa, russischer Tee, Blick auf Kreml & Basiliuskathedrale.`,
+                    price: `Ab 4 500₽`, category: `KREUZFAHRT`
+                },
+                {
+                    title: `Skifahren & Snowboard`, desc: `Moskau wird zum Schneeparadies. Sorokovo Resort: Pisten für alle Level.`,
+                    price: `Ab 3 200₽`, category: `WINTER`
+                },
+                {
+                    title: `Hubschrauber Tour`, desc: `Steigen Sie über die Skyline auf – außergewöhnliches Abenteuer aus der
+Vogelperspektive.`, price: `Ab 18 000₽`, category: `LUFT`
+                },
+                {
+                    title: `Delfinshow`, desc: `Mit Familie? Intelligente Delfine & tolle Wassershows.`, price: `Ab 2 500₽`, category:
+                        `FAMILIE`
+                },
+                {
+                    title: `Russischer Bär`, desc: `Wussten Sie, dass Sie Bären in Reservaten nahe Moskau treffen können?
+Naturverbundenheit.`, price: `Ab 6 000₽`, category: `TIERWELT`
+                },
+                {
+                    title: `Russischer Zirkus`, desc: `Weltberühmte Show. Talentierte Künstler, trainierte Tiere – atemberaubend.`, price:
+                        `Ab 3 000₽`, category: `ZIRKUS`
+                },
+                {
+                    title: `Husky-Schlittenfahrt`, desc: `Starke Hunde ziehen Sie durch verschneite Wälder – magisch.`, price: `Ab 7
+500₽`, category: `ARKTIS`
+                },
+                {
+                    title: `Ballonfahrt`, desc: `Moskau von oben – ein Meisterwerk bei klarem Himmel.`, price: `Ab 12 000₽`, category:
+                        `PANORAMA`
+                },
+                {
+                    title: `Moskauer Zoo`, desc: `Verpassen Sie nicht den historischen Zoo. Tiere aus aller Welt.`, price: `Ab 1 200₽`,
+                    category: `FAMILIE`
+                },
+                {
+                    title: `Rentierreiten`, desc: `Arktische Seele: Ritt auf Rentieren durch unberührte Landschaften.`, price: `Ab 8
+500₽`, category: `KULTUR`
+                },
+                {
+                    title: `Pferdereiten`, desc: `Geländeritt durch Felder & Wälder. Professionelle Guides.`, price: `Ab 4 000₽`,
+                    category: `NATUR`
+                }
+            ]
+        },
+        ru: {
+            hero_title: `⚡ РОССИЯ: 14 ПРИКЛЮЧЕНИЙ`,
+            hero_sub: `От вождения танка и дрифта до хаски, вертолётов и цирка — испытайте дикую душу России.`,
+            activities: [
+                {
+                    title: `Танк Сафари БМП-1`, desc: `Камуфляж, стрельба из АК-47, управление БМП-1 / Т-14 Армата. Военный обед в полевых
+условиях.`, price: `От 15 000₽`, category: `ВОЕННЫЙ`
+                },
+                {
+                    title: `Про Дрифт`, desc: `Острые ощущения с про-инструкторами. Контроль авто и заносы на трассе.`, price: `От 9
+500₽`, category: `АДРЕНАЛИН`
+                },
+                {
+                    title: `Big Foot Тур`, desc: `Крупнейшие амфибийные вездеходы в Европе. Болота, реки, лес — эмоция навсегда!`, price:
+                        `От 12 000₽`, category: `ЭКСТРИМ`
+                },
+                {
+                    title: `Круиз по Москве-реке`, desc: `Роскошный теплоход, русский чай, Кремль и Храм Василия Блаженного.`, price: `От
+4 500₽`, category: `КРУИЗ`
+                },
+                {
+                    title: `Лыжи и Сноуборд`, desc: `Москва — снежный рай. Курорт Сороково: трассы для всех уровней.`, price: `От 3 200₽`,
+                    category: `ЗИМА`
+                },
+                {
+                    title: `Вертолётная прогулка`, desc: `Незабываемый вид на Москву с высоты. Экстраординарное приключение.`, price: `От
+18 000₽`, category: `АВИА`
+                },
+                {
+                    title: `Шоу дельфинов`, desc: `Семейное шоу: умные дельфины и водные представления.`, price: `От 2 500₽`, category:
+                        `СЕМЕЙНЫЙ`
+                },
+                {
+                    title: `Встреча с медведем`, desc: `Знаете ли вы, что можно встретить русского медведя в заповедниках? Связь с
+природой.`, price: `От 6 000₽`, category: `ДИКАЯ ПРИРОДА`
+                },
+                {
+                    title: `Российский цирк`, desc: `Одно из самых известных шоу в мире. Талантливые артисты и животные.`, price: `От 3
+000₽`, category: `ЦИРК`
+                },
+                {
+                    title: `Упряжка хаски`, desc: `Мощные собаки везут вас по заснеженному лесу — чистая магия.`, price: `От 7 500₽`,
+                    category: `АРКТИКА`
+                },
+                {
+                    title: `Воздушный шар`, desc: `Увидеть Москву с другой стороны. Вид сверху — шедевр.`, price: `От 12 000₽`, category:
+                        `ПАНОРАМА`
+                },
+                {
+                    title: `Московский зоопарк`, desc: `Посетите исторический зоопарк. Животные со всего мира.`, price: `От 1 200₽`,
+                    category: `СЕМЕЙНЫЙ`
+                },
+                {
+                    title: `Езда на оленях`, desc: `Прикоснитесь к арктической душе — катание на северных оленях.`, price: `От 8 500₽`,
+                    category: `КУЛЬТУРА`
+                },
+                {
+                    title: `Верховая езда`, desc: `Скачки по полям и лесам. Профессиональные гиды.`, price: `От 4 000₽`, category:
+                        `ПРИРОДА`
+                }
+            ]
+        }
+    };
+    const translations = {
+        fr: {
+            home: "Accueil", services: "Services", tours: "Circuits", features: "Avantages", contact: "Contact",
+            "hero-title": "Découvrez la Russie comme jamais auparavant",
+            "hero-subtitle": "Aventures inoubliables et circuits passionnants au cœur de la Russie",
+            "choose-tour": "Choisissez votre circuit",
+            "services-title": "Nos Services", "services-subtitle": "Nous travaillons chaque jour pour rendre la vie de nos clients meilleure",
+            "service1-title": "Transferts VIP", "service1-desc": "Transport confortable avec chauffeurs professionnels",
+            "service2-title": "Circuits Touristiques", "service2-desc": "Forfaits sur mesure avec guides experts",
+            "service3-title": "Accueil Aéroport", "service3-desc": "Service 24/7 - Nos agents vous attendent",
+            "service4-title": "Support Visa", "service4-desc": "Invitations légales pour visa russe",
+            "service5-title": "Guides Touristiques", "service5-desc": "Découvrez Moscou avec nos experts",
+            "service6-title": "Traductions Certifiées", "service6-desc": "Documents légalisés par notaire",
+            "tours-title": "Circuits Exclusifs", "tours-subtitle": "Des expériences uniques",
+            "tour1-title": "Moscou d'exception", "tour1-desc": "Découvrez la capitale en voiture de sport",
+            "tour2-title": "Aventure Russe", "tour2-desc": "Traîneaux à chiens husky",
+            "tour3-title": "Glamping de Luxe", "tour3-desc": "Retraites champêtres tout confort",
+            "book-now": "Réserver",
+            "features-title": "Pourquoi Nous Choisir",
+            "feature1-title": "Support 24/7", "feature1-desc": "Assistance multilingue en continu",
+            "feature2-title": "Sécurité Garantie", "feature2-desc": "Partenaires certifiés",
+            "feature3-title": "Service Premium", "feature3-desc": "Attention personnalisée",
+            "contact-title": "Prêt pour l'aventure ?", "contact-subtitle": "Contactez-nous pour une consultation gratuite",
+            "send": "Envoyer la demande", "contact-us": "Contactez-nous", "hours": "Horaires",
+            "footer-desc": "Découvrez la Russie autrement - Luxe, Aventure et Authenticité",
+            "name-placeholder": "Votre nom complet", "email-placeholder": "Email", "phone-placeholder": "Téléphone",
+            "message-placeholder": "Votre message...", "service-select": "Service qui vous intéresse",
+            "form-success": "Merci ! Notre équipe vous contactera dans les 24 heures.",
+            "interested-in": "Je suis intéressé par le circuit",
+            
+                    "activity1title": `Safari Tank BMP-1`,
+                        "activity1desc": `Équipement camouflage, tir AK-47, commandez un vrai BMP-1 / T-14 Armata sur terrain accidenté. Déjeuner militaire traditionnel.`,
+                            "activity1price": `À partir de 15 000₽`,
+                                "activity1category": `MILITAIRE`
+                ,
+                
+                    "activity2title": `Drift Pro`,
+                        "activity2desc": `Frissons garantis avec moniteurs pro. Maîtrisez le glisse et devenez un vrai pilote sur circuit.`,
+                            "activity2price": `À partir de 9 500₽`,
+                                "activity2category": `ADRÉNALINE`
+                ,
+                
+                    "activity3title": `Big Foot Tours`,
+                        "activity3desc": `Les plus gros VTT amphibies d'Europe. Marais, rivières et forêt profonde — une émotion inoubliable !`,
+                            "activity3price": `À partir de 12 000₽`,
+                                "activity3category": `EXTREME`
+                ,
+                
+                    "activity4title": `Croisière Moscou`,
+                        "activity4desc": `Bateau de luxe sur la Moskova, thé russe, vues sur le Kremlin et Saint-Basile. Élégance culturelle.`,
+                            "activity4price": `À partir de 4 500₽`,
+                                "activity4category": `CROISIÈRE`
+                ,
+                
+                    "activity5title": `Ski & Snowboard`,
+                        "activity5desc": `Moscou paradis blanc. Station Sorokovo : pistes pour tous niveaux.`,
+                            "activity5price": `À partir de 3 200₽`,
+                                "activity5category": `HIVER`
+                ,
+                
+                    "activity6title": `Tour Hélicoptère`,
+                        "activity6desc": `Vue imprenable sur Moscou. Aventure aérienne exceptionnelle.`,
+                            "activity6price": `À partir de 18 000₽`,
+                                "activity6category": `AÉRIEN`
+                ,
+                
+                    "activity7title": `Spectacle Dauphins`,
+                        "activity7desc": `En famille ? Dauphins intelligents et shows aquatiques magiques.`,
+                            "activity7price": `À partir de 2 500₽`,
+                                "activity7category": `FAMILLE`
+                ,
+                
+                    "activity8title": `Rencontre avec l'Ours`,
+                        "activity8desc": `Saviez-vous que vous pouvez voir l'ours russe dans des réserves près de Moscou ? Connexion avec la nature.`,
+                            "activity8price": `À partir de 6 000₽`,
+                                "activity8category": `FAUNE`
+                ,
+                
+                    "activity9title": `Cirque Russe`,
+                        "activity9desc": `L'un des cirques les plus célèbres au monde. Artistes talentueux, animaux dressés.`,
+                            "activity9price": `À partir de 3 000₽`,
+                                "activity9category": `CIRQUE`
+                ,
+                
+                    "activity10title": `Traîneau à Husky`,
+                        "activity10desc": `Chiens puissants vous emmènent en forêt enneigée — pur bonheur.`,
+                            "activity10price": `À partir de 7 500₽`,
+                                "activity10category": `ARCTIQUE`
+                ,
+                
+                    "activity11title": `Montgolfière`,
+                        "activity11desc": `Moscou vue d'en haut : un chef-d'œuvre par ciel clair.`,
+                            "activity11price": `À partir de 12 000₽`,
+                                "activity11category": `PANORAMA`
+                ,
+                
+                    "activity12title": `Zoo de Moscou`,
+                        "activity12desc": `Ne manquez pas ce zoo historique. Animaux du monde entier.`,
+                            "activity12price": `À partir de 1 200₽`,
+                                "activity12category": `FAMILLE`
+                ,
+                
+                    "activity13title": `Balade en Renne`,
+                        "activity13desc": `Âme arctique : balade à renne dans des paysages vierges.`,
+                            "activity13price": `À partir de 8 500₽`,
+                                "activity13category": `CULTURE`
+                ,
+                
+                    "activity14title": `Équitation`,
+                        "activity14desc": `Galop dans champs et forêts. Guides professionnels.`,
+                            "activity14price": `À partir de 4 000₽`,
+                                "activity14category": `NATURE`
+                
+        },
+        en: {
+            home: "Home", services: "Services", tours: "Tours", features: "Features", contact: "Contact",
+            "hero-title": "Discover Russia like never before",
+            "hero-subtitle": "Unforgettable adventures and exciting tours in the heart of Russia",
+            "choose-tour": "Choose your tour",
+            "services-title": "Our Services", "services-subtitle": "We work every day to make our clients' lives better",
+            "service1-title": "VIP Transfers", "service1-desc": "Comfortable transport with professional drivers",
+            "service2-title": "Tourist Trips", "service2-desc": "Customized packages with expert guides",
+            "service3-title": "Airport Greeting", "service3-desc": "24/7 Service - Our agents await you",
+            "service4-title": "Visa Support", "service4-desc": "Legal invitations for Russian visa",
+            "service5-title": "Tour Guides", "service5-desc": "Discover Moscow with our experts",
+            "service6-title": "Certified Translations", "service6-desc": "Notarized documents - Fast and efficient",
+            "tours-title": "Exclusive Tours", "tours-subtitle": "Unique experiences for unforgettable memories",
+            "tour1-title": "Exceptional Moscow", "tour1-desc": "Discover the capital by sports car or helicopter",
+            "tour2-title": "Russian Adventure", "tour2-desc": "Husky dog sledding and traditional camps",
+            "tour3-title": "Luxury Glamping", "tour3-desc": "Countryside retreats with modern comfort",
+            "book-now": "Book Now",
+            "features-title": "Why Choose Us",
+            "feature1-title": "24/7 Support", "feature1-desc": "Continuous multilingual assistance",
+            "feature2-title": "Safety Guaranteed", "feature2-desc": "Certified partners - Transparent pricing",
+            "feature3-title": "Premium Service", "feature3-desc": "Personalized attention to every detail",
+            "contact-title": "Ready for the adventure?", "contact-subtitle": "Contact us for a free consultation",
+            "send": "Send Request", "contact-us": "Contact Us", "hours": "Hours",
+            "footer-desc": "Discover Russia differently - Luxury, Adventure and Authenticity",
+            "name-placeholder": "Your full name", "email-placeholder": "Email", "phone-placeholder": "Phone",
+            "message-placeholder": "Your message...", "service-select": "Service you're interested in",
+            "form-success": "Thank you! Our team will contact you within 24 hours.",
+            "interested-in": "I am interested in the tour",
+            
+                    "activity1title": `BMP-1 Tank Safari`,
+                    "activity1desc": `Gear up in authentic camouflage, master AK-47 shooting, and command a real BMP-1 / T-14 Armata through rugged terrain. Finish with military field lunch.`,
+                    "activity1category": `MILITARY`
+                ,
+                    "activity2title": `Pro Drifting`,
+                    "activity2desc": `Feel the thrill as you drift with pro instructors. Master car control, master slides, and unleash your inner racer on a professional track.`,
+                    "activity2category": `ADRENALINE`
+                ,
+                    "activity3title": `Big Foot Tours`,
+                    "activity3desc": `The largest amphibious ATVs in Europe. Conquer swamps, rivers and deep forest — an emotion you will remember for a long time!`,
+                    "activity3category": `EXTREME`
+                ,
+                    "activity4title": `Radisson Cruise Moscow`,
+                    "activity4desc": `Luxury ship on Moscow River with hot Russian tea, while landmarks like Kremlin & St. Basil's glide by. Pure cultural elegance.`,
+                    "activity4category": `CRUISE`
+                ,
+                    "activity5title": `Skiing & Snowboarding`,
+                    "activity5desc": `Moscow turns into snowy paradise. Sorokovo Resort offers slopes for all levels — from beginners to pros.`,
+                    "activity5category": `WINTER`
+                ,
+                    "activity6title": `Helicopter Tour Moscow`,
+                    "activity6desc": `Rise above the city skyline for an extraordinary aerial adventure. Memorable moments as you explore from new heights.`,
+                    "activity6category": `AERIAL`
+                ,
+                    "activity7title": `Dolphin Show Moscow`,
+                    "activity7desc": `Travelling with family? Smart dolphins and exciting water shows will bring a smile to everyone's faces.`,
+                    "activity7category": `FAMILY`
+                ,
+                    "activity8title": `Meet the Russian Bear`,
+                    "activity8desc": `Did you know you can meet the Russian bear in reserves near Moscow? Feel connected with wild nature & culture.`,
+                    "activity8category": `WILDLIFE`
+                ,
+                    "activity9title": `Russian Circus Show`,
+                    "activity9desc": `One of the most famous shows in the world. Talented artists, trained animals — you will be amazed.`,
+                    "activity9category": `CIRCUS`
+                ,
+                    "activity10title": `Husky Sleigh Ride`,
+                    "activity10desc": `Husky wagons are an experience you should definitely try. Powerful dogs take you through snowy forests — pure magic.`,
+                    "activity10category": `ARCTIC`
+                ,
+                    "activity11title": `Air Balloon Tour`,
+                    "activity11desc": `See Moscow from a completely different perspective. The view from above is a masterpiece, especially with clear skies.`,
+                    "activity11category": `PANORAMIC`
+                ,
+                    "activity12title": `Moscow Zoo`,
+                    "activity12desc": `Don't miss a visit to the historic Moscow Zoo. See a variety of animals from all over the world.`,
+                    "activity12category": `FAMILY`
+                ,
+                    "activity13title": `Reindeer Riding`,
+                    "activity13desc": `Embrace the Arctic soul — ride with reindeer across pristine landscapes. Unique connection to Russian North.`,
+                    "activity13category": `CULTURE`
+                ,
+                    "activity14title": `Horseback Riding`,
+                    "activity14desc": `Gallop through scenic fields, forests and riverbanks. Professional guides for all experience levels.`,
+                    "activity14category": `NATURE`
+                
+            
+        },
+        ar: {
+            home: "الرئيسية", services: "الخدمات", tours: "الجولات", features: "المزايا", contact: "اتصل بنا",
+            "hero-title": "اكتشف روسيا كما لم يحدث من قبل",
+            "hero-subtitle": "مغامرات لا تُنسى وجولات حماسية في قلب روسيا",
+            "choose-tour": "اختر جولتك",
+            "services-title": "خدماتنا", "services-subtitle": "نعمل كل يوم لجعل حياة عملائنا أفضل وأكثر سعادة",
+            "service1-title": "المواصلات VIP", "service1-desc": "نقل مريح مع سائقين محترفين",
+            "service2-title": "رحلات سياحية", "service2-desc": "باقات مخصصة مع مرشدين خبراء",
+            "service3-title": "الاستقبال في المطار", "service3-desc": "خدمة 24/7 - وكلاؤنا في انتظاركم",
+            "service4-title": "دعم التأشيرات", "service4-desc": "دعوات قانونية للتأشيرة الروسية",
+            "service5-title": "المرشدون السياحيون", "service5-desc": "اكتشف موسكو مع خبرائنا",
+            "service6-title": "ترجمات معتمدة", "service6-desc": "وثائق موثقة من كاتب العدل",
+            "tours-title": "جولات حصرية", "tours-subtitle": "تجارب فريدة لذكريات لا تنسى",
+            "tour1-title": "موسكو الاستثنائية", "tour1-desc": "اكتشف العاصمة بسيارة رياضية أو هليكوبتر",
+            "tour2-title": "المغامرة الروسية", "tour2-desc": "زلاجات الكلاب الهاسكي والمخيمات التقليدية",
+            "tour3-title": "تخييم فاخر", "tour3-desc": "ملاذات ريفية مع راحة عصرية",
+            "book-now": "احجز الآن",
+            "features-title": "لماذا تختارنا",
+            "feature1-title": "دعم 24/7", "feature1-desc": "مساعدة متعددة اللغات على مدار الساعة",
+            "feature2-title": "سلامة مضمونة", "feature2-desc": "شركاء معتمدون - أسعار شفافة",
+            "feature3-title": "خدمة ممتازة", "feature3-desc": "اهتمام شخصي بكل التفاصيل",
+            "contact-title": "هل أنت مستعد للمغامرة؟", "contact-subtitle": "اتصل بنا للحصول على استشارة مجانية",
+            "send": "إرسال الطلب", "contact-us": "اتصل بنا", "hours": "ساعات العمل",
+            "footer-desc": "اكتشف روسيا بشكل مختلف - فخامة ومغامرة وأصالة",
+            "name-placeholder": "الاسم الكامل", "email-placeholder": "البريد الإلكتروني", "phone-placeholder": "رقم الهاتف",
+            "message-placeholder": "رسالتك...", "service-select": "الخدمة التي تهمك",
+            "form-success": "شكراً لك! سيتواصل معك فريقنا خلال 24 ساعة.",
+            "interested-in": "أنا مهتم بالجولة"
+            ,
+                    "activity1title": `سفاري دبابة BMP-1`,
+                    "activity1desc": `ارتدِ الزي العسكري، جرّب إطلاق النار من AK-47، وقُد دبابة BMP-1 / T-14 أرماتا فوق تضاريس صعبة. اختتم بتناول وجبة عسكرية تقليدية.`,
+                    "activity1price": `ابتداءً من 15 000₽`,
+                    "activity1category": `عسكري`
+                ,
+                    "activity2title": `دريفت احترافي`,
+                    "activity2desc": `عِش الإثارة مع مدربين محترفين. تحكّم في السيارة وتعلّم فن الانزلاق على حلبة مخصصة.`,
+                    "activity2price": `ابتداءً من 9 500₽`,
+                    "activity2category": `أدرينالين`
+                ,
+                    "activity3title": `جولات Big Foot`,
+                    "activity3desc": `أكبر مركبات برمائية في أوروبا. اعبر المستنقعات والأنهار والغابات — تجربة لا تُنسى!`,
+                    "activity3price": `ابتداءً من 12 000₽`,
+                    "activity3category": `مغامرة`
+               ,
+                    "activity4title": `رحلة نهرية في موسكو`,
+                    "activity4desc": `سفينة فاخرة على نهر موسكو مع شاي روسي وإطلالة على الكرملين وكاتدرائية سانت باسيل.`,
+                    "activity4price": `ابتداءً من 4 500₽`,
+                    "activity4category": `رحلة بحرية`
+                ,
+                    "activity5title": `التزلج والتزحلق على الجليد`,
+                    "activity5desc": `موسكو تتحول إلى جنة شتوية. منتجع سوروكوفو يوفر مسارات لجميع المستويات.`,
+                    "activity5price": `ابتداءً من 3 200₽`,
+                    "activity5category": `شتاء`
+                ,
+                    "activity6title": `جولة بالمروحية`,
+                    "activity6desc": `استمتع بمنظر موسكو من السماء في تجربة جوية استثنائية.`,
+                    "activity6price": `ابتداءً من 18 000₽`,
+                    "activity6category": `جوي`
+                ,
+                    "activity7title": `عرض الدلافين`,
+                    "activity7desc": `مثالي للعائلات! دلافين ذكية وعروض مائية ممتعة للجميع.`,
+                    "activity7price": `ابتداءً من 2 500₽`,
+                    "activity7category": `عائلي`
+                ,
+                    "activity8title": `لقاء الدب الروسي`,
+                    "activity8desc": `هل تعلم أنه يمكنك رؤية الدب الروسي في محميات قريبة من موسكو؟ تجربة فريدة مع الطبيعة.`,
+                    "activity8price": `ابتداءً من 6 000₽`,
+                    "activity8category": `حياة برية`
+                ,
+                    "activity9title": `عرض السيرك الروسي`,
+                    "activity9desc": `واحد من أشهر العروض في العالم. فنانون موهوبون وحيوانات مدربة.`,
+                    "activity9price": `ابتداءً من 3 000₽`,
+                    "activity9category": `سيرك`
+                ,
+                    "activity10title": `التزلج بعربة الهاسكي`,
+                    "activity10desc": `كلاب قوية تسحبك عبر الغابات الثلجية — تجربة ساحرة.`,
+                    "activity10price": `ابتداءً من 7 500₽`,
+                    "activity10category": `قطبي`
+                ,
+                    "activity11title": `منطاد هوائي`,
+                    "activity11desc": `شاهد موسكو من الأعلى — منظر خلاب خاصة في الأجواء الصافية.`,
+                    "activity11price": `ابتداءً من 12 000₽`,
+                    "activity11category": `مناظر بانورامية`
+                ,
+                    "activity12title": `حديقة حيوانات موسكو`,
+                    "activity12desc": `لا تفوّت زيارة هذه الحديقة التاريخية التي تضم حيوانات من مختلف أنحاء العالم.`,
+                    "activity12price": `ابتداءً من 1 200₽`,
+                    "activity12category": `عائلي`
+                ,
+                    "activity13title": `ركوب حيوان الرنة`,
+                    "activity13desc": `تجربة روح القطب الشمالي عبر ركوب الرنة في طبيعة خلابة.`,
+                    "activity13price": `ابتداءً من 8 500₽`,
+                    "activity13category": `ثقافة`
+                ,
+                    "activity14title": `ركوب الخيل`,
+                    "activity14desc": `انطلق عبر الحقول والغابات مع مرشدين محترفين.`,
+                    "activity14price": `ابتداءً من 4 000₽`,
+                    "activity14category": `طبيعة`
+               
+
+        },
+        ru: {
+            home: "Главная", services: "Услуги", tours: "Туры", features: "Преимущества", contact: "Контакты",
+            "hero-title": "Откройте Россию по-новому",
+            "hero-subtitle": "Незабываемые приключения и захватывающие туры в сердце России",
+            "choose-tour": "Выберите свой тур",
+            "services-title": "Наши услуги", "services-subtitle": "Мы работаем каждый день, чтобы сделать жизнь наших клиентов лучше",
+            "service1-title": "VIP Трансфер", "service1-desc": "Комфортабельный транспорт с профессиональными водителями",
+            "service2-title": "Туристические поездки", "service2-desc": "Индивидуальные пакеты с опытными гидами",
+            "service3-title": "Встреча в аэропорту", "service3-desc": "Круглосуточная услуга - Наши агенты ждут вас",
+            "service4-title": "Визовая поддержка", "service4-desc": "Официальные приглашения на российскую визу",
+            "service5-title": "Экскурсоводы", "service5-desc": "Откройте для себя Москву с нашими экспертами",
+            "service6-title": "Заверенные переводы", "service6-desc": "Нотариально заверенные документы",
+            "tours-title": "Эксклюзивные туры", "tours-subtitle": "Уникальные впечатления для незабываемых воспоминаний",
+            "tour1-title": "Особенная Москва", "tour1-desc": "Откройте столицу на спортивном автомобиле или вертолёте",
+            "tour2-title": "Русское приключение", "tour2-desc": "Ездовые собаки хаски и традиционные лагеря",
+            "tour3-title": "Люкс Глэмпинг", "tour3-desc": "Загородные резиденции с современным комфортом",
+            "book-now": "Забронировать",
+            "features-title": "Почему выбирают нас",
+            "feature1-title": "Поддержка 24/7", "feature1-desc": "Круглосуточная многоязычная помощь",
+            "feature2-title": "Гарантия безопасности", "feature2-desc": "Сертифицированные партнеры",
+            "feature3-title": "Премиум сервис", "feature3-desc": "Индивидуальное внимание к каждой детали",
+            "contact-title": "Готовы к приключениям?", "contact-subtitle": "Свяжитесь с нами для бесплатной консультации",
+            "send": "Отправить запрос", "contact-us": "Свяжитесь с нами", "hours": "Часы работы",
+            "footer-desc": "Откройте для себя Россию по-новому - Роскошь, Приключения и Аутентичность",
+            "name-placeholder": "Ваше полное имя", "email-placeholder": "Электронная почта", "phone-placeholder": "Телефон",
+            "message-placeholder": "Ваше сообщение...", "service-select": "Услуга, которая вас интересует",
+            "form-success": "Спасибо! Наша команда свяжется с вами в течение 24 часов.",
+            "interested-in": "Я заинтересован в туре", 
+                    "activity1title": `Танк Сафари БМП-1`,
+                    "activity1desc": `Камуфляж, стрельба из АК-47, управление БМП-1 / Т-14 Армата. Военный обед в полевых условиях.`,
+                    "activity1price": `От 15 000₽`,
+                    "activity1category": `ВОЕННЫЙ`
+                ,
+                    "activity2title": `Про Дрифт`,
+                    "activity2desc": `Острые ощущения с про-инструкторами. Контроль авто и заносы на трассе.`,
+                    "activity2price": `От 9 500₽`,
+                    "activity2category": `АДРЕНАЛИН`
+                ,
+                    "activity3title": `Big Foot Тур`,
+                    "activity3desc": `Крупнейшие амфибийные вездеходы в Европе. Болота, реки, лес — эмоция навсегда!`,
+                    "activity3price": `От 12 000₽`,
+                    "activity3category": `ЭКСТРИМ`
+                ,
+                    "activity4title": `Круиз по Москве-реке`,
+                    "activity4desc": `Роскошный теплоход, русский чай, Кремль и Храм Василия Блаженного.`,
+                    "activity4price": `От 4 500₽`,
+                    "activity4category": `КРУИЗ`
+                ,
+                    "activity5title": `Лыжи и Сноуборд`,
+                    "activity5desc": `Москва — снежный рай. Курорт Сороково: трассы для всех уровней.`,
+                    "activity5price": `От 3 200₽`,
+                    "activity5category": `ЗИМА`
+                ,
+                    "activity6title": `Вертолётная прогулка`,
+                    "activity6desc": `Незабываемый вид на Москву с высоты. Экстраординарное приключение.`,
+                    "activity6price": `От 18 000₽`,
+                    "activity6category": `АВИА`
+                ,
+                    "activity7title": `Шоу дельфинов`,
+                    "activity7desc": `Семейное шоу: умные дельфины и водные представления.`,
+                    "activity7price": `От 2 500₽`,
+                    "activity7category": `СЕМЕЙНЫЙ`
+                ,
+                    "activity8title": `Встреча с медведем`,
+                    "activity8desc": `Знаете ли вы, что можно встретить русского медведя в заповедниках? Связь с природой.`,
+                    "activity8price": `От 6 000₽`,
+                    "activity8category": `ДИКАЯ ПРИРОДА`
+                ,
+                    "activity9title": `Российский цирк`,
+                    "activity9desc": `Одно из самых известных шоу в мире. Талантливые артисты и животные.`,
+                    "activity9price": `От 3 000₽`,
+                    "activity9category": `ЦИРК`
+                ,
+                    "activity10title": `Упряжка хаски`,
+                    "activity10desc": `Мощные собаки везут вас по заснеженному лесу — чистая магия.`,
+                    "activity10price": `От 7 500₽`,
+                    "activity10category": `АРКТИКА`
+                ,
+                    "activity11title": `Воздушный шар`,
+                    "activity11desc": `Увидеть Москву с другой стороны. Вид сверху — шедевр.`,
+                    "activity11price": `От 12 000₽`,
+                    "activity11category": `ПАНОРАМА`
+                ,
+                    "activity12title": `Московский зоопарк`,
+                    "activity12desc": `Посетите исторический зоопарк. Животные со всего мира.`,
+                    "activity12price": `От 1 200₽`,
+                    "activity12category": `СЕМЕЙНЫЙ`
+                ,
+                    "activity13title": `Езда на оленях`,
+                    "activity13desc": `Прикоснитесь к арктической душе — катание на северных оленях.`,
+                    "activity13price": `От 8 500₽`,
+                    "activity13category": `КУЛЬТУРА`
+                ,
+                    "activity14title": `Верховая езда`,
+                    "activity14desc": `Скачки по полям и лесам. Профессиональные гиды.`,
+                    "activity14price": `От 4 000₽`,
+                    "activity14category": `ПРИРОДА`
+                
+            
+        }
+    };
+
+    let currentLang = 'fr';
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        
+        // Update active language display
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.classList.remove('lang-active');
+        });
+        document.getElementById(`lang-${lang}`).classList.add('lang-active');
+        
+        // Update RTL for Arabic
+        if (lang === 'ar') {
+            document.body.classList.add('rtl');
+            document.querySelector('.navbar-brand').style.fontFamily = "'Cairo', sans-serif";
+        } else {
+            document.body.classList.remove('rtl');
+            document.querySelector('.navbar-brand').style.fontFamily = "inherit";
+        }
+        
+        // Update all text elements with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    // Handled by data-i18n-placeholder
+                } else if (el.tagName === 'SELECT' && el.hasAttribute('data-i18n')) {
+                    // For select options, we need special handling
+                } else {
+                    el.innerText = translations[lang][key];
+                }
+            }
+        });
+        
+        // Update placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang] && translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+        
+        // Update select options
+        const select = document.getElementById('service');
+        if (select) {
+            const options = select.querySelectorAll('option');
+            options.forEach(opt => {
+                const i18nKey = opt.getAttribute('data-i18n');
+                if (i18nKey && translations[lang] && translations[lang][i18nKey]) {
+                    opt.textContent = translations[lang][i18nKey];
+                }
+            });
+        }
+        
+        // Update email in footer
+        const footerEmail = document.querySelector('.footer .fa-envelope').parentElement;
+        if (footerEmail) {
+            const emailSpan = footerEmail.cloneNode(true);
+            if (lang === 'ar') {
+                // Keep email visible
+            }
+        }
+    }
+
+    // Set initial active language
+    document.getElementById('lang-fr').classList.add('lang-active');
+    window.switchLanguage = switchLanguage;
+</script>
+</body>
+</html>
